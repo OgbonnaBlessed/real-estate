@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cleanParams, createNewUserInDatabase, withToast } from "@/lib/utils";
 import {
   Application,

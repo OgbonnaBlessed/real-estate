@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FiltersState, initialState, setFilters } from "@/state";
 import { useAppSelector } from "@/state/redux";
 import { usePathname, useRouter } from "next/navigation";
