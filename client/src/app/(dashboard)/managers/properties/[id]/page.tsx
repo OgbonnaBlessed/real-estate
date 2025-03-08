@@ -50,7 +50,7 @@ const PropertyTenants = () => {
             {/* Back to properties page */}
             <Link
                 href="/managers/properties"
-                className="flex items-center mb-4 hover:text-primary-500"
+                className="flex items-center mb-4 hover:text-(--primary-500)"
                 scroll={false}
             >
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -74,7 +74,7 @@ const PropertyTenants = () => {
                         <div>
                             <button
                                 className={`bg-white border border-gray-300 text-gray-700 py-2
-                            px-4 rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50`}
+                            px-4 rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50))`}
                             >
                                 <Download className="w-5 h-5 mr-2" />
                                 <span>Download All</span>
@@ -141,7 +141,7 @@ const PropertyTenants = () => {
                                         <TableCell>
                                             <button
                                                 className={`border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex 
-                                            items-center justify-center font-semibold hover:bg-primary-700 hover:text-primary-50`}
+                                            items-center justify-center font-semibold hover:bg-(--primary-700) hover:text-(--primary-50)`}
                                             >
                                                 <ArrowDownToLine className="w-4 h-4 mr-1" />
                                                 Download Agreement

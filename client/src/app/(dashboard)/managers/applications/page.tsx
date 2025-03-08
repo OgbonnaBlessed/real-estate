@@ -119,7 +119,7 @@ const Applications = () => {
                                         <Link
                                             href={`/managers/properties/${application.property.id}`}
                                             className={`bg-white border border-gray-300 text-gray-700 py-2 px-4 
-                                            rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50`}
+                                            rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)`}
                                             scroll={false}
                                         >
                                             <Hospital className="w-5 h-5 mr-2" />
@@ -128,7 +128,7 @@ const Applications = () => {
                                     {application.status === "Approved" && (
                                         <button
                                             className={`bg-white border border-gray-300 text-gray-700 py-2 px-4
-                                            rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50`}
+                                            rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)`}
                                         >
                                             <Download className="w-5 h-5 mr-2" />
                                             Download Agreement
@@ -142,7 +142,7 @@ const Applications = () => {
                                                     handleStatusChange(application.id, "Approved")
                                                     }
                                                 >
-                                                    Approve
+                                                    Approved
                                                 </button>
                                                 <button
                                                     className="px-4 py-2 text-sm text-white bg-red-600 rounded hover:bg-red-500"
@@ -157,7 +157,7 @@ const Applications = () => {
                                         {application.status === "Denied" && (
                                             <button
                                                 className={`bg-gray-800 text-white py-2 px-4 rounded-md flex items-center
-                                                justify-center hover:bg-secondary-500 hover:text-primary-50`}
+                                                justify-center hover:bg-(--secondary-500) hover:text-(--primary-50)`}
                                             >
                                                 Contact User
                                             </button>

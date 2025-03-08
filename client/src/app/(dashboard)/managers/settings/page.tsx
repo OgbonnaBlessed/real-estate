@@ -28,9 +28,9 @@ const ManagerSettings = () => {
 
     return (
         <SettingsForm
-        initialData={initialData}
-        onSubmit={handleSubmit}
-        userType="manager"
+            initialData={initialData}
+            onSubmit={handleSubmit}
+            userType="manager"
         />
     );
 };

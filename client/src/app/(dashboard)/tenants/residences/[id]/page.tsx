@@ -46,7 +46,7 @@ const PaymentMethod = () => {
                             <div>
                                 <div className="flex items-start gap-5">
                                     <h3 className="text-lg font-semibold">Visa ending in 2024</h3>
-                                    <span className="text-sm font-medium border border-primary-700 text-primary-700 px-3 py-1 rounded-full">
+                                    <span className="text-sm font-medium border border-(--primary-700) text-(--primary-700) px-3 py-1 rounded-full">
                                         Default
                                     </span>
                                 </div>
@@ -64,7 +64,7 @@ const PaymentMethod = () => {
 
                     <hr className="my-4" />
                     <div className="flex justify-end">
-                        <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50">
+                        <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)">
                         <Edit className="w-5 h-5 mr-2" />
                         <span>Edit</span>
                         </button>
@@ -118,14 +118,14 @@ const ResidenceCard = ({
                     {new Date(currentLease.startDate).toLocaleDateString()}
                     </div>
                 </div>
-                <div className="border-[0.5px] border-primary-300 h-4" />
+                <div className="border-[0.5px] border-(--primary-300) h-4" />
                 <div className="xl:flex">
                     <div className="text-gray-500 mr-2">End Date: </div>
                     <div className="font-semibold">
                     {new Date(currentLease.endDate).toLocaleDateString()}
                     </div>
                 </div>
-                <div className="border-[0.5px] border-primary-300 h-4" />
+                <div className="border-[0.5px] border-(--primary-300) h-4" />
                 <div className="xl:flex">
                     <div className="text-gray-500 mr-2">Next Payment: </div>
                     <div className="font-semibold">
@@ -137,11 +137,11 @@ const ResidenceCard = ({
             </div>
             {/* Buttons */}
             <div className="flex justify-end gap-2 w-full">
-                <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50">
+                <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)">
                 <User className="w-5 h-5 mr-2" />
                 Manager
                 </button>
-                <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50">
+                <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)">
                 <Download className="w-5 h-5 mr-2" />
                 Download Agreement
                 </button>
@@ -162,7 +162,7 @@ const BillingHistory = ({ payments }: { payments: Payment[] }) => {
                     </p>
                 </div>
                 <div>
-                    <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-primary-700 hover:text-primary-50">
+                    <button className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center hover:bg-(--primary-700) hover:text-(--primary-50)">
                         <Download className="w-5 h-5 mr-2" />
                         <span>Download All</span>
                     </button>
@@ -212,7 +212,7 @@ const BillingHistory = ({ payments }: { payments: Payment[] }) => {
                                 </TableCell>
                                 <TableCell>${payment.amountPaid.toFixed(2)}</TableCell>
                                 <TableCell>
-                                <button className="border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center font-semibold hover:bg-primary-700 hover:text-primary-50">
+                                <button className="border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex items-center justify-center font-semibold hover:bg-(--primary-700) hover:text-(--primary-50)">
                                     <ArrowDownToLineIcon className="w-4 h-4 mr-1" />
                                     Download
                                 </button>

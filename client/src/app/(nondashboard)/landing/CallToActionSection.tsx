@@ -36,13 +36,13 @@ const CallToActionSection = () => {
                         <div className="flex justify-center md:justify-start gap-4">
                             <button
                                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                className="inline-block text-[#27272a] bg-white rounded-lg px-6 py-3 font-semibold hover:bg-[#82828b] hover:text-[#fcfcfc] cursor-pointer"
+                                className="inline-block text-(--primary-700) bg-white rounded-lg px-6 py-3 font-semibold hover:bg-(--primary-500) hover:text-(--primary-50) cursor-pointer"
                             >
                                 Search
                             </button>
                             <Link
                                 href="/signup"
-                                className="inline-block text-white bg-[#82828b] rounded-lg px-6 py-3 font-semibold hover:bg-[#e45a5a]"
+                                className="inline-block text-white bg-(--primary-500) rounded-lg px-6 py-3 font-semibold hover:bg-(--secondary-600)"
                                 scroll={false}
                             >
                                 Sign Up

@@ -227,7 +227,7 @@ const NewProperty = () => {
 
                         <Button
                             type="submit"
-                            className="bg-primary-700 text-white w-full mt-8"
+                            className="bg-(--primary-700) text-white w-full mt-8"
                         >
                             Create Property
                         </Button>

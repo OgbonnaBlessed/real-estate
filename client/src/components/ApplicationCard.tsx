@@ -53,7 +53,7 @@ const ApplicationCard = ({
                 </div>
 
                 {/* Divider - visible only on desktop */}
-                <div className="hidden lg:block border-[0.5px] border-primary-200 h-48" />
+                <div className="hidden lg:block border-[0.5px] border-(--primary)-200 h-48" />
 
                 {/* Status Section */}
                 <div className="flex flex-col justify-between w-full lg:basis-2/12 lg:h-48 py-2 gap-3 lg:gap-0">
@@ -83,7 +83,7 @@ const ApplicationCard = ({
                 </div>
 
                 {/* Divider - visible only on desktop */}
-                <div className="hidden lg:block border-[0.5px] border-primary-200 h-48" />
+                <div className="hidden lg:block border-[0.5px] border-(--primary-200) h-48" />
 
                 {/* Contact Person Section */}
                 <div className="flex flex-col justify-start gap-5 w-full lg:basis-3/12 lg:h-48 py-2">
@@ -105,11 +105,11 @@ const ApplicationCard = ({
                         </div>
                         <div className="flex flex-col gap-2">
                             <div className="font-semibold">{contactPerson.name}</div>
-                            <div className="text-sm flex items-center text-primary-600">
+                            <div className="text-sm flex items-center text-(--primary-600)">
                                 <PhoneCall className="w-5 h-5 mr-2" />
                                 {contactPerson.phoneNumber}
                             </div>
-                            <div className="text-sm flex items-center text-primary-600">
+                            <div className="text-sm flex items-center text-(--primary-600)">
                                 <Mail className="w-5 h-5 mr-2" />
                                 {contactPerson.email}
                             </div>

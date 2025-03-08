@@ -4,17 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --primary-700: #a8a8af;
-  --primary-200: #e0e0e2;
-  --primary-500: #82828b;
-  --primary-300: #c7c7cc;
-}
-
-.bg-primary-700 {
-  background-color: var(--primary-700);
-}
-
 *,
 *::before,
 *::after {
@@ -30,6 +19,31 @@ body,
   @apply text-sm;
   @apply bg-white;
   @apply dark:bg-black;
+}
+
+@theme {
+  --primary-50: #fcfcfc;
+  --primary-100: #f1f1f2;
+  --primary-200: #e0e0e2;
+  --primary-300: #c7c7cc;
+  --primary-400: #a8a8af;
+  --primary-500: #82828b;
+  --primary-600: #57575f;
+  --primary-700: #27272a;
+  --primary-800: #111113;
+  --primary-900: #040405;
+  --primary-950: #000000;
+  --secondary-50: #fefcfc;
+  --secondary-100: #fdf2f2;
+  --secondary-200: #fae1e1;
+  --secondary-300: #f6c9c9;
+  --secondary-400: #f1abab;
+  --secondary-500: #eb8686;
+  --secondary-600: #e45a5a;
+  --secondary-700: #dc2828;
+  --secondary-800: #7c1414;
+  --secondary-900: #400a0a;
+  --secondary-950: #2c0707;
 }
 
 @layer base {

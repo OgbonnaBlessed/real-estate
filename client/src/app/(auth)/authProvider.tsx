@@ -14,6 +14,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { useRouter, usePathname } from "next/navigation";
 
 // https://docs.amplify.aws/gen1/javascript/tools/libraries/configure-categories/
+
 Amplify.configure({
     Auth: {
         Cognito: {
@@ -30,11 +31,11 @@ const components = {
             <View className="mt-4 mb-7">
                 <Heading level={3} className="!text-2xl !font-bold">
                     RENT
-                    <span className="text-[#eb8686] font-light hover:!text-[#c7c7cc]">
+                    <span className="text-(--secondary-500) font-light hover:!text-(--primary-300)">
                         IFUL
                     </span>
                 </Heading>
-                <p className="text-[hsl(var(--muted-foreground))] mt-2">
+                <p className="text-(--muted-foreground) mt-2">
                     <span className="font-bold">Welcome!</span> Please sign in to continue
                 </p>
             </View>
@@ -45,11 +46,11 @@ const components = {
             const { toSignUp } = useAuthenticator();
             return (
                 <View className="text-center mt-4">
-                    <p className="text-[hsl(var(--muted-foreground))]">
+                    <p className="text-(--muted-foreground)">
                         Don&apos;t have an account?{" "}
                         <button
                             onClick={toSignUp}
-                            className="text-primary hover:underline bg-transparent border-none p-0 cursor-pointer"
+                            className="text-(--primary) hover:underline bg-transparent border-none p-0 cursor-pointer"
                         >
                             Sign up here
                         </button>
@@ -83,11 +84,11 @@ const components = {
         const { toSignIn } = useAuthenticator();
             return (
                 <View className="text-center mt-4">
-                    <p className="text-[hsl(var(--muted-foreground))]">
+                    <p className="text-(--muted-foreground)">
                         Already have an account?{" "}
                         <button
                             onClick={toSignIn}
-                            className="text-primary hover:underline bg-transparent border-none p-0 cursor-pointer"
+                            className="text-(--primary) hover:underline bg-transparent border-none p-0 cursor-pointer"
                         >
                             Sign in
                         </button>
