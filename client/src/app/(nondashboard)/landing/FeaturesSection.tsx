@@ -34,7 +34,7 @@ const FeaturesSection = () => {
             <div className="max-w-4xl xl:max-w-6xl mx-auto">
                 <motion.h2
                     variants={itemVariants}
-                    className="text-3xl font-bold text-center mb-12 w-full sm:w-2/3 mx-auto"
+                    className="md:text-3xl text-xl font-bold text-center mb-12 w-full sm:w-2/3 mx-auto"
                 >
                     Quickly find the home you want using our effective search filters!
                 </motion.h2>
@@ -91,11 +91,11 @@ const FeatureCard = ({
                 alt={title}
             />
         </div>
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <h3 className="md:text-xl text-lg font-semibold mb-2">{title}</h3>
         <p className="mb-4">{description}</p>
         <Link
             href={linkHref}
-            className="inline-block border border-gray-300 rounded px-4 py-2 hover:bg-gray-100"
+            className="inline-block border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-100"
             scroll={false}
         >
             {linkText}
