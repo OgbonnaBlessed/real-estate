@@ -162,7 +162,7 @@ const Navbar = () => {
                     <Link href="/signin">
                         <Button
                             variant="outline"
-                            className="text-white border-white bg-transparent hover:bg-white hover:text-(--primary-700) rounded-lg cursor-pointer"
+                            className="text-white border-white bg-transparent hover:bg-white hover:text-(--primary-700) rounded-lg"
                         >
                             Sign In
                         </Button>

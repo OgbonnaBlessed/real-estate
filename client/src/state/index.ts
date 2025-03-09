@@ -16,6 +16,7 @@ interface InitialStateTypes {
   filters: FiltersState;
   isFiltersFullOpen: boolean;
   viewMode: "grid" | "list";
+  isListingsOpen: boolean;
 }
 
 export const initialState: InitialStateTypes = {
@@ -32,6 +33,7 @@ export const initialState: InitialStateTypes = {
   },
   isFiltersFullOpen: false,
   viewMode: "grid",
+  isListingsOpen: false,
 };
 
 export const globalSlice = createSlice({
@@ -44,13 +46,25 @@ export const globalSlice = createSlice({
     toggleFiltersFullOpen: (state) => {
       state.isFiltersFullOpen = !state.isFiltersFullOpen;
     },
+    closeFiltersFull: (state) => {
+      state.isFiltersFullOpen = false;
+    },
     setViewMode: (state, action: PayloadAction<"grid" | "list">) => {
       state.viewMode = action.payload;
     },
+    toggleListings: (state) => {
+      state.isListingsOpen = !state.isListingsOpen;
+    },
+    openListings: (state) => {
+      state.isListingsOpen = true;
+    },
+    closeListings: (state) => {
+      state.isListingsOpen = false;
+    }
   },
 });
 
-export const { setFilters, toggleFiltersFullOpen, setViewMode } =
+export const { setFilters, toggleFiltersFullOpen, closeFiltersFull, setViewMode, toggleListings, openListings, closeListings } =
   globalSlice.actions;
 
 export default globalSlice.reducer;

@@ -1,5 +1,6 @@
 import {
     FiltersState,
+    openListings,
     setFilters,
     setViewMode,
     toggleFiltersFullOpen,
@@ -11,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
 import { cleanParams, cn, formatPriceValue } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Filter, Grid, List, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Filter, Grid, List, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
     Select,
@@ -21,6 +22,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { PropertyTypeIcons } from "@/lib/constants";
+import { AnimatePresence, motion } from "framer-motion";
   
 const FiltersBar = () => {
     const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const FiltersBar = () => {
     const isFiltersFullOpen = useAppSelector(
       (state) => state.global.isFiltersFullOpen
     );
+    const isListingOpen = useAppSelector((state) => state.global.isListingsOpen);
     const viewMode = useAppSelector((state) => state.global.viewMode);
     const [searchInput, setSearchInput] = useState(filters.location);
   
@@ -99,13 +102,13 @@ const FiltersBar = () => {
     return (
         <div className="flex justify-between items-center w-full py-5">
             {/* Filters */}
-            <div className="flex justify-between items-center gap-4 p-2">
+            <div className="flex justify-between items-center flex-wrap gap-4 p-2">
                 {/* All Filters */}
                 <Button
                     variant="outline"
                     className={cn(
-                        "gap-2 rounded-xl border-primary-400 hover:bg-primary-500 hover:text-primary-100",
-                        isFiltersFullOpen && "bg-primary-700 text-primary-100"
+                        "gap-2 rounded-xl border-primary-400 hover:bg-(--primary-500) hover:text-(--primary-100) cursor-pointer",
+                        isFiltersFullOpen && "bg-(--primary-700) text-(--primary-100) cursor-pointer"
                     )}
                     onClick={() => dispatch(toggleFiltersFullOpen())}
                 >
@@ -119,12 +122,12 @@ const FiltersBar = () => {
                         placeholder="Search location"
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        className="w-40 rounded-l-xl rounded-r-none border-primary-400 border-r-0"
+                        className="w-40 rounded-l-xl rounded-r-none border-(--primary-400) border-r-0"
                     />
                     <Button
                         onClick={handleLocationSearch}
-                        className={`rounded-r-xl rounded-l-none border-l-none border-primary-400 shadow-none 
-                            border hover:bg-primary-700 hover:text-primary-50`}
+                        className={`rounded-r-xl rounded-l-none border-l-none border-(--primary-400) shadow-none 
+                            border hover:bg-(--primary-700) hover:text-(--primary-50)`}
                     >
                         <Search className="w-4 h-4" />
                     </Button>
@@ -139,7 +142,7 @@ const FiltersBar = () => {
                             handleFilterChange("priceRange", value, true)
                         }
                     >
-                        <SelectTrigger className="w-22 rounded-xl border-primary-400">
+                        <SelectTrigger className="w-22 rounded-xl border-(--primary-400)">
                             <SelectValue>
                                 {formatPriceValue(filters.priceRange[0], true)}
                             </SelectValue>
@@ -161,7 +164,7 @@ const FiltersBar = () => {
                             handleFilterChange("priceRange", value, false)
                         }
                     >
-                        <SelectTrigger className="w-22 rounded-xl border-primary-400">
+                        <SelectTrigger className="w-22 rounded-xl border-(--primary-400)">
                             <SelectValue>
                                 {formatPriceValue(filters.priceRange[1], false)}
                             </SelectValue>
@@ -184,7 +187,7 @@ const FiltersBar = () => {
                         value={filters.beds}
                         onValueChange={(value) => handleFilterChange("beds", value, null)}
                     >
-                        <SelectTrigger className="w-26 rounded-xl border-primary-400">
+                        <SelectTrigger className="w-26 rounded-xl border-(--primary-400)">
                             <SelectValue placeholder="Beds" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
@@ -201,7 +204,7 @@ const FiltersBar = () => {
                         value={filters.baths}
                         onValueChange={(value) => handleFilterChange("baths", value, null)}
                     >
-                        <SelectTrigger className="w-26 rounded-xl border-primary-400">
+                        <SelectTrigger className="w-26 rounded-xl border-(--primary-400)">
                             <SelectValue placeholder="Baths" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
@@ -220,7 +223,7 @@ const FiltersBar = () => {
                         handleFilterChange("propertyType", value, null)
                     }
                 >
-                    <SelectTrigger className="w-32 rounded-xl border-primary-400">
+                    <SelectTrigger className="w-32 rounded-xl border-(--primary-400)">
                         <SelectValue placeholder="Home Type" />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
@@ -238,30 +241,58 @@ const FiltersBar = () => {
             </div>
     
             {/* View Mode */}
-            <div className="flex justify-between items-center gap-4 p-2">
-                <div className="flex border rounded-xl">
-                    <Button
-                        variant="ghost"
-                        className={cn(
-                            "px-3 py-1 rounded-none rounded-l-xl hover:bg-primary-600 hover:text-primary-50",
-                            viewMode === "list" ? "bg-primary-700 text-primary-50" : ""
-                        )}
-                        onClick={() => dispatch(setViewMode("list"))}
-                    >
-                        <List className="w-5 h-5" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        className={cn(
-                            "px-3 py-1 rounded-none rounded-r-xl hover:bg-primary-600 hover:text-primary-50",
-                            viewMode === "grid" ? "bg-primary-700 text-primary-50" : ""
-                        )}
-                        onClick={() => dispatch(setViewMode("grid"))}
-                    >
-                        <Grid className="w-5 h-5" />
-                    </Button>
-                </div>
-            </div>
+            <>
+                {isListingOpen ? (
+                    <AnimatePresence>
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8, ease: "easeInOut" }}   
+                            className="flex border rounded-xl"
+                        >
+                            <Button
+                                variant="ghost"
+                                className={cn(
+                                    "px-3 py-1 rounded-none rounded-l-xl hover:bg-(--primary-600) hover:text-(--primary-50)",
+                                    viewMode === "list" ? "bg-(--primary-700) text-(--primary-50)" : ""
+                                )}
+                                onClick={() => dispatch(setViewMode("list"))}
+                            >
+                                <List className="w-5 h-5" />
+                            </Button>
+                            <Button
+                                variant="ghost"
+                                className={cn(
+                                    "px-3 py-1 rounded-none rounded-r-xl hover:bg-(--primary-600) hover:text-(--primary-50)",
+                                    viewMode === "grid" ? "bg-(--primary-700) text-(--primary-50)" : ""
+                                )}
+                                onClick={() => dispatch(setViewMode("grid"))}
+                            >
+                                <Grid className="w-5 h-5" />
+                            </Button>
+                        </motion.div>
+                    </AnimatePresence>
+                    ) : (
+                    <AnimatePresence>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8, ease: "easeInOut" }}   
+                        >
+                            <Button
+                                variant="outline"
+                                onClick={() => dispatch(openListings())}
+                                className="flex-1 bg-transparent border border-(--primary-700) hover:bg-(--primary-700) text-black hover:text-white rounded-lg"
+                                // as={motion.button}
+                            >
+                                View Properties
+                            </Button>
+                        </motion.div>
+                    </AnimatePresence> 
+                )}
+            </>
         </div>
     );
 };
