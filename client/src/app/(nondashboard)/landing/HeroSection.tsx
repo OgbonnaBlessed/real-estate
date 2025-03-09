@@ -50,13 +50,13 @@ const HeroSection = () => {
     return (
         <div className="relative h-screen">
             <Image
-                src="/landing-splash.jpg"
+                src="https://images.pexels.com/photos/731082/pexels-photo-731082.jpeg?auto=compress&cs=tinysrgb&w=1800"
                 alt="Rentiful Rental Platform Hero Section"
                 fill
                 className="object-cover object-center"
                 priority
             />
-            <div className="absolute inset-0 bg-black/60"></div>
+            {/* <div className="absolute inset-0 bg-black/60"></div> */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -64,10 +64,10 @@ const HeroSection = () => {
                 className="absolute top-1/2 transform -translate-y-1/2 text-center w-full"
             >
                 <div className="max-w-4xl mx-auto px-16 sm:px-12">
-                    <h1 className="text-5xl font-bold text-white mb-4">
+                    <h1 className="md:text-5xl text-3xl font-bold text-white md:mb-4">
                         Start your journey to finding the perfect place to call home
                     </h1>
-                    <p className="text-xl text-white mb-8">
+                    <p className="md:text-xl text-lg text-white mb-8">
                         Explore our wide range of rental properties tailored to fit your
                         lifestyle and needs!
                     </p>
@@ -78,11 +78,11 @@ const HeroSection = () => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Search by city, neighborhood or address"
-                            className="w-full max-w-lg rounded-none rounded-l-xl focus-visible:ring-0 bg-white h-12"
+                            className="w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12"
                         />
                         <Button
                             onClick={handleLocationSearch}
-                            className="bg-(--secondary-500) text-white rounded-none rounded-r-xl border-none hover:bg-(--secondary-600) h-12 cursor-pointer outline-none focus-visible:ring-0"
+                            className="bg-(--secondary-500) text-white rounded-none rounded-r-xl border-none hover:bg-(--secondary-600) h-12"
                         >
                             Search
                         </Button>
