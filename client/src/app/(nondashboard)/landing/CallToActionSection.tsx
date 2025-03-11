@@ -9,7 +9,7 @@ const CallToActionSection = () => {
     return (
         <div className="relative py-24">
             <Image
-                src="/landing-call-to-action.jpg"
+                src="https://images.pexels.com/photos/6316067/pexels-photo-6316067.jpeg?auto=compress&cs=tinysrgb&w=1800"
                 alt="Rentiful Search Section Background"
                 fill
                 className="object-cover object-center"
