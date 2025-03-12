@@ -9,11 +9,9 @@ const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
     const {
         data: property,
         isError,
-        isLoading,
     } = useGetPropertyQuery(propertyId);
 
-    if (isLoading) return <>Loading...</>;
-    if (isError || !property) {
+    if (isError) {
         return <>Property not Found</>;
     }
 
@@ -75,9 +73,9 @@ const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
                 </p>
                 <Tabs defaultValue="required-fees" className="mt-8">
                     <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="required-fees">Required Fees</TabsTrigger>
-                        <TabsTrigger value="pets">Pets</TabsTrigger>
-                        <TabsTrigger value="parking">Parking</TabsTrigger>
+                        <TabsTrigger value="required-fees" className="cursor-pointer">Required Fees</TabsTrigger>
+                        <TabsTrigger value="pets" className="cursor-pointer">Pets</TabsTrigger>
+                        <TabsTrigger value="parking" className="cursor-pointer">Parking</TabsTrigger>
                     </TabsList>
                     <TabsContent value="required-fees" className="w-1/3">
                         <p className="font-semibold mt-5 mb-2">One time move in fees</p>

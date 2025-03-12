@@ -369,4 +369,5 @@ export const {
   useGetApplicationsQuery,
   useUpdateApplicationStatusMutation,
   useCreateApplicationMutation,
+  usePrefetch
 } = api;

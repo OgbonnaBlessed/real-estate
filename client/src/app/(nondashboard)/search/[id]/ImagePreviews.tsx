@@ -29,20 +29,20 @@ const ImagePreviews = ({ images }: ImagePreviewsProps) => {
                         alt={`Property Image ${index + 1}`}
                         fill
                         priority={index == 0}
-                        className="object-cover cursor-pointer transition-transform duration-500 ease-in-out"
+                        className="object-cover transition-transform duration-500 ease-in-out"
                     />
                 </div>
             ))}
             <button
                 onClick={handlePrev}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 rounded-full focus:outline-none focus:ring focus:ring-(--secondary-300)"
+                className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-(--primary-700)/50 p-2 rounded-full focus:outline-none cursor-pointer"
                 aria-label="Previous image"
             >
                 <ChevronLeft className="text-white" />
             </button>
             <button
                 onClick={handleNext}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary-700 bg-opacity-50 p-2 rounded-full focus:outline-none focus:ring focus:ring-(--secondary-300)"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-(--primary-700)/50 p-2 rounded-full focus:outline-none cursor-pointer"
                 aria-label="Previous image"
             >
                 <ChevronRight className="text-white" />
