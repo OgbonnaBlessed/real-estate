@@ -50,7 +50,7 @@ const Navbar = () => {
                     >
                         <Image
                             src="/logo.png"
-                            alt="Rentiful Logo"
+                            alt="Terra Haven Logo"
                             width={96}
                             height={96}
                         />

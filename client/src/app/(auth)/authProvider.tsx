@@ -4,14 +4,18 @@ import React, { useEffect } from "react";
 import { Amplify } from "aws-amplify";
 import {
   Authenticator,
+  Button,
+  CheckboxField,
   Heading,
   Radio,
   RadioGroupField,
   useAuthenticator,
+  useTheme,
   View,
 } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 
 // https://docs.amplify.aws/gen1/javascript/tools/libraries/configure-categories/
 
@@ -28,22 +32,32 @@ Amplify.configure({
 const components = {
     Header() {
         return (
-            <View className="mt-4 mb-7">
+            <View className="mt-4">
                 <Heading level={3} className="!text-2xl !font-bold">
-                    RENT
-                    <span className="text-(--secondary-500) font-light hover:!text-(--primary-300)">
-                        IFUL
-                    </span>
+                    <Image
+                        src="/logo-only.png"
+                        alt="Terra Haven Logo"
+                        width={48}
+                        height={48}
+                    />
                 </Heading>
-                <p className="text-(--muted-foreground) mt-2">
-                    <span className="font-bold">Welcome!</span> Please sign in to continue
-                </p>
             </View>
         );
     },
     SignIn: {
+        Header() {
+            // const { tokens } = useTheme();
+      
+            return (
+                <div className="text-(--muted-foreground) my-2">
+                    <span className="font-bold">Welcome!</span> Please sign in to continue
+                </div>
+            );
+        },
         Footer() {
             const { toSignUp } = useAuthenticator();
+            const { toForgotPassword } = useAuthenticator();
+
             return (
                 <View className="text-center mt-4">
                     <p className="text-(--muted-foreground)">
@@ -55,13 +69,29 @@ const components = {
                             Sign up here
                         </button>
                     </p>
+                    <Button
+                        onClick={toForgotPassword}
+                        size="small"
+                        variation="link"
+                    >
+                        Reset Password
+                    </Button>
                 </View>
             );
         },
     },
     SignUp: {
+        Header() {
+            // const { tokens } = useTheme();
+      
+            return (
+                <div className="text-(--muted-foreground) my-2">
+                    <span className="font-bold">Join us today!</span> Create an account to get started
+                </div>
+            );
+        },
         FormFields() {
-        const { validationErrors } = useAuthenticator();
+            const { validationErrors } = useAuthenticator();
 
             return (
                 <>
@@ -73,15 +103,23 @@ const components = {
                         hasError={!!validationErrors?.["custom:role"]}
                         isRequired
                     >
-                        <Radio value="tenant" className="cursor-pointer">Tenant</Radio>
-                        <Radio value="manager" className="cursor-pointer">Manager</Radio>
+                        <Radio value="tenant">Tenant</Radio>
+                        <Radio value="manager">Manager</Radio>
                     </RadioGroupField>
+
+                    <CheckboxField
+                        errorMessage={validationErrors.acknowledgement as string}
+                        hasError={!!validationErrors.acknowledgement}
+                        name="acknowledgement"
+                        value="yes"
+                        label="I agree with the Policy"
+                    />
                 </>
             );
         },
 
         Footer() {
-        const { toSignIn } = useAuthenticator();
+            const { toSignIn } = useAuthenticator();
             return (
                 <View className="text-center mt-4">
                     <p className="text-(--muted-foreground)">
@@ -97,6 +135,67 @@ const components = {
             );
         },
     },
+    ConfirmSignUp: {
+        Header() {
+            const { tokens } = useTheme();
+            return (
+                <Heading
+                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+                    level={3}
+                >
+                    Enter Information:
+                </Heading>
+            );
+        }
+    },
+    SetupTotp: {
+        Header() {
+            const { tokens } = useTheme();
+            return (
+                <Heading
+                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+                    level={3}
+                >
+                    Enter Information:
+                </Heading>
+            );
+        }
+    },
+    ConfirmSignIn: {
+        Header() {
+            const { tokens } = useTheme();
+            return (
+                <Heading
+                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+                    level={3}
+                >
+                    Enter Information:
+                </Heading>
+            );
+        }
+    },
+    ForgotPassword: {
+        Header() {
+            // const { tokens } = useTheme();
+      
+            return (
+                <div className="text-(--muted-foreground) my-2">
+                    <span className="font-bold">Forgot your password?</span> Let&apos;s reset it
+                </div>
+            );
+        },
+    },
+    ConfirmResetPassword: {
+        Header() {
+            // const { tokens } = useTheme();
+      
+            return (
+                <div className="text-(--muted-foreground) my-2">
+                    Set a new password to regain access
+                </div>
+            );
+        },
+    },
 };
 
 const formFields = {
@@ -105,11 +204,13 @@ const formFields = {
             placeholder: 'Enter your email',
             label: "Email",
             isRequired: true,
+            autocomplete: "off",
         },
         password: {
             placeholder: "Enter your password",
             label: "Password",
-            isRequired: true
+            isRequired: true,
+            autocomplete: "off",
         }
     },
     signUp: {
@@ -118,26 +219,74 @@ const formFields = {
             placeholder: 'Choose a username',
             label: "Username",
             isRequired: true,
+            autocomplete: "off",
         },
         email: {
             order: 2,
             placeholder: 'Enter your email',
             label: "Email",
             isRequired: true,
+            autocomplete: "off",
         },
         password: {
             order: 3,
             label: 'Password',
             placeholder: 'Create a password',
             isRequired: true,
+            autocomplete: "off",
         },
         confirm_password: {
             order: 4,
             label: "Confirm Password",
             placeholder: 'Confirm your password',
             isRequired: true,
+            autocomplete: "off",
         },
-    }
+    },
+    forceNewPassword: {
+        password: {
+            placeholder: 'Enter your password',
+            autocomplete: "off",
+        },
+    },
+    forgotPassword: {
+        username: {
+            placeholder: 'Enter your username',
+            autocomplete: "off",
+        },
+    },
+    confirmResetPassword: {
+        confirmation_code: {
+            placeholder: 'Enter your confirmation code:',
+            label: 'New Label',
+            isRequired: false,
+            autocomplete: "off",
+        },
+        confirm_password: {
+            placeholder: 'Enter your new password',
+            autocomplete: "off",
+        },
+    },
+    setupTotp: {
+        QR: {
+            totpIssuer: 'test issuer',
+            totpUsername: 'amplify_qr_test_user',
+        },
+        confirmation_code: {
+            label: 'New Label',
+            placeholder: 'Enter your confirmation code',
+            isRequired: false,
+            autocomplete: "off",
+        },
+    },
+    confirmSignIn: {
+        confirmation_code: {
+            label: 'New Label',
+            placeholder: 'Enter your confirmation code',
+            isRequired: false,
+            autocomplete: "off",
+        },
+    },
 };
 
 const Auth = ({ children }: { children: React.ReactNode }) => {
@@ -167,6 +316,15 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
                 initialState={pathname.includes("signup") ? "signUp" : "signIn"}
                 components={components}
                 formFields={formFields}
+                services={{
+                    async validateCustomSignUp(formData) {
+                        if (!formData.acknowledgement) {
+                            return {
+                                acknowledgement: 'You have to agree to our policy',
+                            };
+                        }
+                    },
+                }}
             >
                 {() => <>{children}</>}
             </Authenticator>
