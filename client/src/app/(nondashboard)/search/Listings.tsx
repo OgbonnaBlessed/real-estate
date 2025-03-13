@@ -13,7 +13,7 @@ import CardCompact from "@/components/CardCompact";
 import Loading from "@/components/Loading";
 import { ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { closeListings, openListings } from "@/state";
+import { closeListings } from "@/state";
 import { useDispatch } from "react-redux";
   
 const Listings = () => {
@@ -33,7 +33,6 @@ const Listings = () => {
   
     const {
       data: properties,
-      isLoading,
       isError,
     } = useGetPropertiesQuery(filters);
   
@@ -56,9 +55,8 @@ const Listings = () => {
             });
         }
     };
-  
-    if (isLoading) return <Loading />;
-    if (isError || !properties) return <div>Failed to fetch properties</div>;
+    
+    if (isError) return <div>Failed to fetch properties</div>;
   
     return (
         <AnimatePresence>
@@ -77,7 +75,7 @@ const Listings = () => {
                             onClick={() => dispatch(closeListings())}
                         />
                         <h3 className="text-sm px-4 font-bold">
-                            {properties.length}{" "}
+                            {properties?.length}{" "}
                             <span className="text-gray-700 font-normal">
                                 Places in {filters.location}
                             </span>

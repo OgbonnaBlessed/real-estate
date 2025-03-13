@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useAppSelector } from "@/state/redux";
 import { useGetPropertiesQuery } from "@/state/api";
 import { Property } from "@/types/prismaTypes";
+import Loading from "@/components/Loading";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
@@ -16,10 +17,21 @@ const Map = () => {
         isLoading,
         isError,
     } = useGetPropertiesQuery(filters);
-    console.log(properties);
+
+    const [showLoading, setShowLoading] = useState(true);
+
+    // Ensure Loading stays for at least 5 seconds
+    useEffect(() => {
+        if (isLoading) {
+            setShowLoading(true);
+        } else {
+            const timer = setTimeout(() => setShowLoading(false), 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [isLoading]);
 
     useEffect(() => {
-        if (isLoading || isError || !properties) return;
+        if (showLoading || isError || !properties) return;
 
         const map = new mapboxgl.Map({
             container: mapContainerRef.current!,
@@ -41,9 +53,9 @@ const Map = () => {
         resizeMap();
 
         return () => map.remove();
-    }, [isLoading, isError, properties, filters.coordinates]);
+    }, [showLoading, isError, properties, filters.coordinates]);
 
-    if (isLoading) return <>Loading...</>;
+    if (showLoading) return <Loading />;
     if (isError || !properties) return <div>Failed to fetch properties</div>;
 
     return (

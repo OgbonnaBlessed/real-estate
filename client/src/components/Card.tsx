@@ -11,7 +11,7 @@ const Card = ({
   propertyLink,
 }: CardProps) => {
     const [imgSrc, setImgSrc] = useState(
-        property.photoUrls?.[0] || "/placeholder.jpg"
+        property.photoUrls?.[0] || "https://images.pexels.com/photos/3935333/pexels-photo-3935333.jpeg?auto=compress&cs=tinysrgb&w=1800"
     );
 
     return (
@@ -24,7 +24,7 @@ const Card = ({
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        onError={() => setImgSrc("/placeholder.jpg")}
+                        onError={() => setImgSrc("https://images.pexels.com/photos/3935333/pexels-photo-3935333.jpeg?auto=compress&cs=tinysrgb&w=1800")}
                     />
                 </div>
                 <div className="absolute bottom-4 left-4 flex gap-2">

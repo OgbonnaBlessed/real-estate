@@ -1,7 +1,7 @@
 "use client";
 
 import { NAVBAR_HEIGHT } from "@/lib/constants";
-import { useAppDispatch, useAppSelector } from "@/state/redux";
+import { useAppDispatch } from "@/state/redux";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { cleanParams } from "@/lib/utils";
@@ -14,9 +14,6 @@ import Listings from "./Listings";
 const SearchPageContent = () => {
     const searchParams = useSearchParams();
     const dispatch = useAppDispatch();
-    const isFiltersFullOpen = useAppSelector(
-        (state) => state.global.isFiltersFullOpen
-    );
 
     useEffect(() => {
         const initialFilters = Array.from(searchParams.entries()).reduce(

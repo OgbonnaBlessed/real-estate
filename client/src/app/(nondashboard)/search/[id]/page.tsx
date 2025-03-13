@@ -2,7 +2,7 @@
 
 import { useGetAuthUserQuery, useGetPropertyQuery } from "@/state/api";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImagePreviews from "./ImagePreviews";
 import PropertyOverview from "./PropertyOverview";
 import PropertyDetails from "./PropertyDetails";
@@ -17,8 +17,19 @@ const SingleListing = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { data: authUser } = useGetAuthUserQuery();
     const { data: property, isLoading } = useGetPropertyQuery(propertyId);
+    const [showLoading, setShowLoading] = useState(true);
 
-    if (isLoading) return <Loading />;
+    // Ensure loading persists for at least 5 seconds
+    useEffect(() => {
+        if (isLoading) {
+            setShowLoading(true);
+        } else {
+            const timer = setTimeout(() => setShowLoading(false), 5000);
+            return () => clearTimeout(timer); // Cleanup on unmount
+        }
+    }, [isLoading]);
+
+    if (showLoading) return <Loading />;
 
     return (
         <div>
