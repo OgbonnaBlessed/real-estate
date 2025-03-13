@@ -34,12 +34,12 @@ const CallToActionSection = () => {
                             location.
                         </p>
                         <div className="flex justify-center md:justify-start gap-4">
-                            <button
-                                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            <Link
+                                href="/search"
                                 className="inline-block text-(--primary-700) bg-white rounded-lg px-6 py-3 font-semibold hover:bg-(--primary-500) hover:text-(--primary-50) cursor-pointer"
                             >
                                 Search
-                            </button>
+                            </Link>
                             <Link
                                 href="/signup"
                                 className="inline-block text-white bg-(--primary-500) rounded-lg px-6 py-3 font-semibold hover:bg-(--secondary-600)"
