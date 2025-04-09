@@ -33,17 +33,17 @@ body,
   --primary-800: #111113;
   --primary-900: #040405;
   --primary-950: #000000;
-  --secondary-50: #fefcfc;
-  --secondary-100: #fdf2f2;
-  --secondary-200: #fae1e1;
-  --secondary-300: #f6c9c9;
-  --secondary-400: #f1abab;
-  --secondary-500: #eb8686;
-  --secondary-600: #e45a5a;
-  --secondary-700: #dc2828;
-  --secondary-800: #7c1414;
-  --secondary-900: #400a0a;
-  --secondary-950: #2c0707;
+  --secondary-50: #fdf8f3;
+  --secondary-100: #fbeedc;
+  --secondary-200: #f7dfba;
+  --secondary-300: #f0c98e;
+  --secondary-400: #e5a855;
+  --secondary-500: #d88b28; /* Rich Gold */
+  --secondary-600: #b06e1c;
+  --secondary-700: #875417;
+  --secondary-800: #5f3b10;
+  --secondary-900: #3d260b;
+  --secondary-950: #261708;
 }
 
 @layer base {
