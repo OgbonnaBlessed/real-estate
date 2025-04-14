@@ -10,10 +10,12 @@ import {
   useSidebar,
 } from "./ui/sidebar";
 import {
+    ArrowLeftFromLine,
   Building,
   FileText,
   Heart,
   Home,
+  HomeIcon,
   Menu,
   Settings,
   X,
@@ -133,6 +135,10 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                         );
                     })}
                 </SidebarMenu>
+                <Link href="/" className="flex items-center gap-3 absolute bottom-20 left-7 text-blue-600 font-medium">
+                    <ArrowLeftFromLine className="h-5 w-5"/>
+                    <p>Home</p>
+                </Link>
             </SidebarContent>
         </Sidebar>
     );
