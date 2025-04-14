@@ -257,9 +257,9 @@ const formFields = {
     },
     confirmResetPassword: {
         confirmation_code: {
-            placeholder: 'Enter your confirmation code:',
-            label: 'New Label',
-            isRequired: false,
+            placeholder: 'Enter your confirmation code',
+            label: 'Enter code',
+            isRequired: true,
             autocomplete: "off",
         },
         confirm_password: {
@@ -273,17 +273,17 @@ const formFields = {
             totpUsername: 'amplify_qr_test_user',
         },
         confirmation_code: {
-            label: 'New Label',
+            label: 'Enter code',
             placeholder: 'Enter your confirmation code',
-            isRequired: false,
+            isRequired: true,
             autocomplete: "off",
         },
     },
     confirmSignIn: {
         confirmation_code: {
-            label: 'New Label',
+            label: 'Enter code',
             placeholder: 'Enter your confirmation code',
-            isRequired: false,
+            isRequired: true,
             autocomplete: "off",
         },
     },
@@ -323,7 +323,7 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
                                 acknowledgement: 'You have to agree to our policy',
                             };
                         }
-                    },
+                    }
                 }}
             >
                 {() => <>{children}</>}

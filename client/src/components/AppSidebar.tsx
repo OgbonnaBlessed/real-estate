@@ -24,7 +24,7 @@ import Link from "next/link";
 
 const AppSidebar = ({ userType }: AppSidebarProps) => {
     const pathname = usePathname();
-    const { toggleSidebar, open } = useSidebar();
+    const { toggleSidebar, open, setOpen } = useSidebar();
 
     const navLinks =
         userType === "manager"
@@ -46,7 +46,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                 },
                 { icon: Home, label: "Residences", href: "/tenants/residences" },
                 { icon: Settings, label: "Settings", href: "/tenants/settings" },
-                ];
+            ];
 
     return (
         <Sidebar
@@ -72,7 +72,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                                         {userType === "manager" ? "Manager View" : "Renter View"}
                                     </h1>
                                     <button
-                                        className="hover:bg-gray-100 p-2 rounded-md"
+                                        className="hover:bg-gray-100 p-2 rounded-md cursor-pointer"
                                         onClick={() => toggleSidebar()}
                                     >
                                         <X className="h-6 w-6 text-gray-600" />
@@ -80,7 +80,7 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                                 </>
                             ) : (
                                 <button
-                                    className="hover:bg-gray-100 p-2 rounded-md"
+                                    className="hover:bg-gray-100 p-2 rounded-md cursor-pointer"
                                     onClick={() => toggleSidebar()}
                                 >
                                     <Menu className="h-6 w-6 text-gray-600" />
@@ -108,7 +108,11 @@ const AppSidebar = ({ userType }: AppSidebarProps) => {
                                         open ? "text-blue-600" : "ml-[5px]"
                                     )}
                                 >
-                                    <Link href={link.href} className="w-full" scroll={false}>
+                                    <Link 
+                                        href={link.href} 
+                                        className="w-full" 
+                                        scroll={false}
+                                    >
                                         <div className="flex items-center gap-3">
                                             <link.icon
                                                 className={`h-5 w-5 ${

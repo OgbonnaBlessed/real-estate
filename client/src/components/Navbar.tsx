@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { useGetAuthUserQuery } from "@/state/api";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "aws-amplify/auth";
-import { Bell, MessageCircle, Plus, Search } from "lucide-react";
+import { Bell, LayoutDashboardIcon, LogOut, MessageCircle, Plus, Search, Settings } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -101,7 +101,7 @@ const Navbar = () => {
                     </div>
 
                     <DropdownMenu>
-                        <DropdownMenuTrigger className="flex items-center gap-2 focus:outline-none">
+                        <DropdownMenuTrigger className="flex items-center gap-2 focus:outline-none cursor-pointer">
                         <Avatar>
                             <AvatarImage src={authUser.userInfo?.image} />
                             <AvatarFallback className="bg-(--primary-600)">
@@ -113,37 +113,40 @@ const Navbar = () => {
                         </p>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="bg-white text-(--primary-700)">
-                        <DropdownMenuItem
-                            className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100) font-bold"
-                            onClick={() =>
-                                router.push(
-                                    authUser.userRole?.toLowerCase() === "manager"
-                                        ? "/managers/properties"
-                                        : "/tenants/favorites",
-                                    { scroll: false }
-                                )
-                            }
-                        >
-                            Go to Dashboard
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator className="bg-(--primary-200)" />
-                        <DropdownMenuItem
-                            className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100)"
-                            onClick={() =>
-                                router.push(
-                                    `/${authUser.userRole?.toLowerCase()}s/settings`,
-                                    { scroll: false }
-                                )
-                            }
-                        >
-                            Settings
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100)"
-                            onClick={handleSignOut}
-                        >
-                            Sign out
-                        </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100) font-bold flex items-center gap-5 transition-all duration-300 ease-in-out"
+                                onClick={() =>
+                                    router.push(
+                                        authUser.userRole?.toLowerCase() === "manager"
+                                            ? "/managers/properties"
+                                            : "/tenants/favorites",
+                                        { scroll: false }
+                                    )
+                                }
+                            >
+                                <LayoutDashboardIcon />
+                                <p>Go to Dashboard</p>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator className="bg-(--primary-200)" />
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100) flex items-center gap-5 transition-all duration-300 ease-in-out"
+                                onClick={() =>
+                                    router.push(
+                                        `/${authUser.userRole?.toLowerCase()}s/settings`,
+                                        { scroll: false }
+                                    )
+                                }
+                            >
+                                <Settings />
+                                <p>Settings</p>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:!bg-(--primary-700) hover:!text-(--primary-100) flex items-center gap-5 transition-all duration-300 ease-in-out"
+                                onClick={handleSignOut}
+                            >
+                                <LogOut />
+                                <p>Sign out</p>
+                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                     </>
